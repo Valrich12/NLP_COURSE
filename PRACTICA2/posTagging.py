@@ -8,11 +8,9 @@ def separate_news(file_name):
     # Lee el corpus original del archivo de entrada y lo pasa a una DataFrame
     df = pd.read_csv(file_name, sep='&&&&&&&&', dtype=str,engine='python')
     news = df.drop(df.columns[[0,1,3]],axis=1)
-    news.columns[[0]].str.strip()
     news = news.to_string(index=False)
     news = news.strip()
     news = news.replace("   ","")
-    print(news)
     f = open('test.txt','w',encoding='utf-8')
     f.write(news)
     f.close
@@ -31,14 +29,17 @@ if __name__ == "__main__":
 # # ~ cadena = "Los perros ladraron la otra noche a unos coches rojos que pasaron por la calle."
 
 # #Se carga el corpus para el tagger en español
-    # nlp = spacy.load("es_core_news_sm")
+    nlp = spacy.load("es_core_news_sm")
 # #Se realiza el análisis de la cadena
-    # doc = nlp(news)
-
-    # for token in doc:
-    #     print(token.text, token.pos_, token.dep_, token.lemma_)
-    #     print(token.text, token.pos_, token.dep_, token.lemma_, spacy.explain(token.tag_), spacy.explain(token.dep_))
-    # displacy.serve(doc, style="dep")    
+    nlp.max_length = 1475807
+    doc = nlp(news)
+    f=open('tokens.txt','a',encoding='utf-8')
+    for token in doc:
+        toWrite = token.text, token.pos_, token.dep_, token.lemma_
+        f.write(toWrite)
+        # print(token.text, token.pos_, token.dep_, token.lemma_, spacy.explain(token.tag_), spacy.explain(token.dep_))
+    displacy.serve(doc, style="dep") 
+    f.close   
 
 # for entity in doc.ents:
 #     print(entity.text, entity.label_)

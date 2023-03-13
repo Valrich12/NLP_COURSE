@@ -35,7 +35,7 @@ if __name__ == "__main__":
     doc = nlp(news)
     f=open('tokens.txt','a',encoding='utf-8')
     for token in doc:
-        toWrite = token.text, token.pos_, token.dep_, token.lemma_
+        toWrite = '['+token.text+']' +' '+ token.lemma_+' '
         f.write(toWrite)
         # print(token.text, token.pos_, token.dep_, token.lemma_, spacy.explain(token.tag_), spacy.explain(token.dep_))
     displacy.serve(doc, style="dep") 

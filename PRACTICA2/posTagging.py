@@ -25,6 +25,7 @@ def separate_news(file_name):
 if __name__ == "__main__":
     news = separate_news('corpus_noticias.txt')
     print("ESTO ES UNA PRUEBA")
+    print("ESTO ES OTRA PRUEBA")
 
 # cadena = "Juan estaba corriendo por el pasillo de la escuela superior de cómputo. "
 # # ~ cadena = "Los perros ladraron la otra noche a unos coches rojos que pasaron por la calle."

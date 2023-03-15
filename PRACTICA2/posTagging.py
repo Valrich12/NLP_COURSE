@@ -9,9 +9,11 @@ def separate_news(file_name):
     # Lee el corpus original del archivo de entrada y lo pasa a una DataFrame
     df = pd.read_csv(file_name, sep='&&&&&&&&', dtype=str,engine='python')
     news = df.drop(df.columns[[0,1,3]],axis=1)
+    
     news = news.to_string(index=False)
     news = news.strip()
     news = news.replace("  ","")
+    print(news)
     f = open('test.txt','w',encoding='utf-8')
     f.write(news)
     f.close
